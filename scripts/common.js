@@ -12,7 +12,6 @@ import { saveState, getState } from './state.js';
 // };
 
 export const commonInit = () => {
-  console.log('Initialising!');
   const state = getState();
   // setCurrentTab(state.currentTab);
   // const faveColorSelector = document.querySelector('#input-color-fave-color');
