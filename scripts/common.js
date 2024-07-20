@@ -11,7 +11,7 @@ import { saveState, getState } from './state.js';
 //   }
 // };
 
-const commonInit = () => {
+export const commonInit = () => {
   console.log('Initialising!');
   const state = getState();
   // setCurrentTab(state.currentTab);
