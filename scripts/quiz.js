@@ -1,9 +1,28 @@
 import { saveState, getState } from './state.js';
 import { commonInit } from './common.js';
 
+const setRadioButtonValue = (rbName, value) => {
+    const rbs = document.querySelectorAll(`input[name="${rbName}"]`);
+    for (const rb of rbs) {
+        if (rb.value === value) {
+            rb.checked = true;
+        } else {
+            rb.checked = false;
+        }
+    }
+};
+
 const writeQuizResultToPage = (state) => {
     document.querySelector('#inputQName').value = state.name;
     document.querySelector('#inputQColor').value = state.color;
+    setRadioButtonValue('inputQClipart', state.clipart);
+    setRadioButtonValue('inputQFont', state.font);
+    document.querySelector('#inputQHtmlTag').value = state.htmlTag;
+    document.querySelector('#inputQKillFriend').value = state.killFriend;
+    document.querySelector('#inputQPoet').value = state.poet;
+    setRadioButtonValue('inputQMoralDilemma', state.moralDilemma);
+    setRadioButtonValue('inputQChickenSalt', state.chickenSalt);
+    setRadioButtonValue('inputQDataUse', state.dataUse);
 };
 
 const getRadioButtonValue = (rbName, defaultValue) => {
