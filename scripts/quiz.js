@@ -71,7 +71,6 @@ window.addEventListener('load', () => {
     commonInit();
 
     const state = getState();
-    console.log(JSON.stringify(state));
     writeQuizResultToPage(state);
 
     const quizCompleteButton = document.querySelector('#quizCompleteButton');
