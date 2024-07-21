@@ -1,4 +1,4 @@
-import { saveState, getState } from './state.js';
+import { saveState, getState, clearState } from './state.js';
 
 // const setCurrentTab = (tabName) => {
 //   const tabs = document.querySelectorAll('div.main-view-tab');
@@ -12,7 +12,8 @@ import { saveState, getState } from './state.js';
 // };
 
 export const commonInit = () => {
-  const state = getState();
+  // clearState();
+  // const state = getState();
   // setCurrentTab(state.currentTab);
   // const faveColorSelector = document.querySelector('#input-color-fave-color');
   // faveColorSelector.addEventListener('change', onFaveColorSet, false)

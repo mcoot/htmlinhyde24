@@ -1,8 +1,8 @@
 const getInitialState = () => ({
   name: '',
   color: '',
-  clipartChoice: '',
-  fontChoice: '',
+  clipart: '',
+  font: '',
   htmlTag: '',
   killFriend: '',
   poet: '',
@@ -12,10 +12,14 @@ const getInitialState = () => ({
 });
 
 export const saveState = (state) => {
-  window.localStorage.setItem('profileState', state);
+  window.localStorage.setItem('profileState', JSON.stringify(state));
+};
+
+export const clearState = () => {
+  saveState(getInitialState());
 };
 
 export const getState = () => {
-  const state = window.localStorage.getItem('profileState') ?? getInitialState();
+  const state = JSON.parse(window.localStorage.getItem('profileState')) ?? getInitialState();
   return state;
 };

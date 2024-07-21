@@ -1,12 +1,25 @@
 import { saveState, getState } from './state.js';
 import { commonInit } from './common.js';
 
-const readQuizResult = () => {
+const writeQuizResultToPage = (state) => {
+    document.querySelector('#inputQName').value = state.name;
+    document.querySelector('#inputQColor').value = state.color;
+};
+
+const getRadioButtonValue = (rbName, defaultValue) => {
+    const elem = document.querySelector(`input[name="${rbName}"]:checked`);
+    if (elem) {
+        return elem.value;
+    }
+    return defaultValue;
+};
+
+const readQuizResultFromPage = () => {
     const result = {
         name: '',
         color: '',
-        clipartChoice: '',
-        fontChoice: '',
+        clipart: '',
+        font: '',
         htmlTag: '',
         killFriend: '',
         poet: '',
@@ -17,26 +30,30 @@ const readQuizResult = () => {
 
     result.name = document.querySelector('#inputQName').value;
     result.color = document.querySelector('#inputQColor').value;
-    result.clipartChoice = document.querySelector('input[name="inputQClipart"]:checked').value;
-    result.fontChoice = document.querySelector('input[name="inputQFont"]:checked').value;
+    result.clipart = getRadioButtonValue('inputQClipart', '');
+    result.font = getRadioButtonValue('inputQFont', '');
     result.htmlTag = document.querySelector('#inputQHtmlTag').value;
     result.killFriend = document.querySelector('#inputQKillFriend').value;
     result.poet = document.querySelector('#inputQPoet').value;
-    result.moralDilemma = document.querySelector('input[name="inputQMoralDilemma"]:checked').value;
-    result.chickenSalt = document.querySelector('input[name="inputQChickenSalt"]:checked').value;
-    result.dataUse = document.querySelector('input[name="inputQDataUse"]:checked').value;
+    result.moralDilemma = getRadioButtonValue('inputQMoralDilemma', '');
+    result.chickenSalt = getRadioButtonValue('inputQChickenSalt', '');
+    result.dataUse = getRadioButtonValue('inputQDataUse', '');
 
     return result;
 };
 
 const onQuizComplete = (event) => {
-    const result = readQuizResult();
+    const result = readQuizResultFromPage();
     console.log(JSON.stringify(result));
-    // saveState(result); 
+    saveState(result); 
 }
 
 window.addEventListener('load', () => {
     commonInit();
+
+    const state = getState();
+    console.log(JSON.stringify(state));
+    writeQuizResultToPage(state);
 
     const quizCompleteButton = document.querySelector('#quizCompleteButton');
     quizCompleteButton.addEventListener('click', onQuizComplete, false);
