@@ -1,16 +1,21 @@
 const getInitialState = () => ({
-    currentTab: 'landing-tab',
-    currentQuestion: 0,
-    profile: {
-        name: '',
-        clipartChoice: '',
-        fontChoice: '',
-    }
+  name: '',
+  color: '',
+  clipartChoice: '',
+  fontChoice: '',
+  htmlTag: '',
+  killFriend: '',
+  poet: '',
+  moralDilemma: '',
+  chickenSalt: '',
+  dataUse: '',
 });
 
 export const saveState = (state) => {
-    window.localStorage.setItem('profileState', state);
+  window.localStorage.setItem('profileState', state);
 };
 
-export const getState = () => 
-    window.localStorage.getItem('profileState') ?? getInitialState();
+export const getState = () => {
+  const state = window.localStorage.getItem('profileState') ?? getInitialState();
+  return state;
+};
